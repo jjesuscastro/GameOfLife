@@ -3,13 +3,13 @@
 An implementation of Conway's Game of Life using Unity.
 
 ## Controls
-1,2,3,4,5,6 = Change Cell and Grid Size XXS, XS, S, M, L, XL respectively  
-Left Mouse Click = Toggle a Cell  
-P = Play/Pause
-R = Randomize Cells
-C = Clear Cells
-Esc = Show/Hide UI
-Left/Right Arrow = Decrease/Increase speed by increments of 5
+* 1,2,3,4,5,6 = Change Cell and Grid Size XXS, XS, S, M, L, XL respectively  
+* Left Mouse Click = Toggle a Cell  
+* P = Play/Pause
+* R = Randomize Cells
+* C = Clear Cells
+* Esc = Show/Hide UI
+* Left/Right Arrow = Decrease/Increase speed by increments of 5
 
 ## Screenshots
 **UI**  
