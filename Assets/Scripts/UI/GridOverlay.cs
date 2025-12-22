@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -14,21 +15,19 @@ public class GridOverlay : MonoBehaviour
     public bool showSub = false;
     public float smallStep, largeStep;
 
-    GameManager gameManager;
+    [SerializeField]
+    private Variables variables;
     int gridSizeX, gridSizeY;
     float startX = -0.5f, startY = -0.5f;
 
     void Start()
     {
-        gameManager = GameManager.instance;
-        gameManager.onSizeChanged.AddListener(UpdateValues);
         UpdateValues();
     }
 
-    void UpdateValues()
-    {
-        gridSizeX = gameManager.GetScreenWidth();
-        gridSizeY = gameManager.GetScreenHeight();
+    void UpdateValues() {
+        gridSizeX = this.variables.width;
+        gridSizeY = this.variables.height;
     }
 
     void CreateLineMaterial()
