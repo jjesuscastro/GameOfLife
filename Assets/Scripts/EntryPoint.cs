@@ -14,6 +14,8 @@ namespace DefaultNamespace {
         public void Start() {
             this.gridSimulationService.Start();
             this.inputService.OnPlayPauseRequested += this.gridSimulationService.ToggleSimulation;
+            this.inputService.OnResetRequested += this.gridSimulationService.RandomizeGrid;
+            this.inputService.OnClearRequested += this.gridSimulationService.ClearGrid;
         }
     }
 }

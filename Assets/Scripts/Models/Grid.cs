@@ -1,3 +1,4 @@
+using System;
 using Models.Interfaces;
 
 namespace Models {
@@ -18,6 +19,10 @@ namespace Models {
 
         public void SetCell(int x, int y, int value) {
             this.cells[y * this.width + x] = value;
+        }
+
+        public void ClearGrid() {
+            Array.Clear(this.cells, 0, this.cells.Length);
         }
     }
 }

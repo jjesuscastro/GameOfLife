@@ -27,6 +27,8 @@ namespace Services {
             this.grid = grid;
             this.objectPoolService = objectPoolService;
             this.populationService = populationService;
+            
+            this.cellViews = new CellView[this.variables.width * this.variables.height];
         }
         
         /// <summary>
@@ -81,18 +83,23 @@ namespace Services {
         private void SpawnCell(int x, int y, int width, bool randomize = false) {
             this.grid.SetCell(x, y, randomize ? Random.Range(0, 2) : 0);
             int cell = this.grid.GetCell(x, y);
-            CellView cellView = this.objectPoolService.Get(x, y);
+            int index = y * width + x;
+
+            CellView cellView = this.cellViews[index];
+            if (cellView == null) {
+                cellView = this.objectPoolService.Get(x, y);
+                this.cellViews[y * width + x] = cellView;
+            }
+
             cellView.SetAlive(cell);
-            this.cellViews[y * width + x] = cellView;
         }
 
         /// <summary>
         /// Fills the grid with Cell objects and CellViews
         /// </summary>
         private void FillGrid(bool randomize = false) {
-            this.cellViews = new CellView[this.variables.width * this.variables.height];
+            this.isPlaying = false;
             int width = this.variables.width;
-            
             for (int y = 0; y < this.variables.height; y++) {
                 for (int x = 0; x < this.variables.width; x++) {
                     SpawnCell(x, y, width, randomize);
@@ -105,6 +112,18 @@ namespace Services {
         /// </summary>
         public void ToggleSimulation() {
             this.isPlaying = !this.isPlaying;
+        }
+
+        public void RandomizeGrid() {
+            FillGrid(true);
+            this.generation = 1;
+        }
+
+        public void ClearGrid() {
+            this.isPlaying = false;
+            this.grid.ClearGrid();
+            UpdateCellViews();
+            this.generation = 1;
         }
 
         /// <summary>

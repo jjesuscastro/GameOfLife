@@ -4,5 +4,6 @@ namespace Models.Interfaces {
 
         int GetCell(int x, int y);
         void SetCell(int x, int y, int cell);
+        void ClearGrid();
     }
 }
