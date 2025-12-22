@@ -1,13 +1,14 @@
-using Models;
+using System;
 using Models.Interfaces;
 using ScriptableObjects;
 using Services.Interfaces;
 using UnityEngine;
 using VContainer.Unity;
 using Views;
+using Random = UnityEngine.Random;
 
 namespace Services {
-    public class GridSimulationService : IGridSimulationService, ITickable {
+    public class GridSimulationService : IGridSimulationService, ITickable, IDisposable {
 
         private Variables variables;
         private IGrid grid;
@@ -55,6 +56,9 @@ namespace Services {
             this.timer += Time.deltaTime * this.variables.speed;
         }
 
+        /// <summary>
+        /// Update the CellViews with the current state of the grid.
+        /// </summary>
         private void UpdateCellViews() {
             int[] cells = this.grid.Cells;
             int width = this.variables.width;
@@ -74,12 +78,12 @@ namespace Services {
         /// Gets a CellView from the object pool,
         /// and binds them together.
         /// </summary>
-        private void SpawnCell(int x, int y, bool randomize = false) {
+        private void SpawnCell(int x, int y, int width, bool randomize = false) {
             this.grid.SetCell(x, y, randomize ? Random.Range(0, 2) : 0);
             int cell = this.grid.GetCell(x, y);
             CellView cellView = this.objectPoolService.Get(x, y);
             cellView.SetAlive(cell);
-            this.cellViews[y * this.grid.Width + x] = cellView;
+            this.cellViews[y * width + x] = cellView;
         }
 
         /// <summary>
@@ -87,16 +91,27 @@ namespace Services {
         /// </summary>
         private void FillGrid(bool randomize = false) {
             this.cellViews = new CellView[this.variables.width * this.variables.height];
+            int width = this.variables.width;
             
             for (int y = 0; y < this.variables.height; y++) {
                 for (int x = 0; x < this.variables.width; x++) {
-                    SpawnCell(x, y, randomize);
+                    SpawnCell(x, y, width, randomize);
                 }
             }
         }
 
+        /// <summary>
+        /// Toggle the simulation on and off.
+        /// </summary>
         public void ToggleSimulation() {
             this.isPlaying = !this.isPlaying;
+        }
+
+        /// <summary>
+        /// VContainer Dispose Method
+        /// </summary>
+        public void Dispose() {
+            this.objectPoolService.Clear();
         }
     }
 }

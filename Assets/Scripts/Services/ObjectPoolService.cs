@@ -12,6 +12,13 @@ namespace Services {
             this.cellsParent = cellsParent;
             this.prefab = prefab;
         }
+        
+        /// <summary>
+        /// Get a cell from the pool or instantiate a new one if none is available
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public T Get(int x, int y) {
             Vector3 position = new Vector3(x, y, 0);
             T t;
@@ -28,11 +35,18 @@ namespace Services {
             return gameObject.GetComponent<T>();
         }
 
+        /// <summary>
+        /// Return a cell to the pool
+        /// </summary>
+        /// <param name="t"></param>
         public void Release(T t) {
             t.gameObject.SetActive(false);
             this.pool.Enqueue(t);
         }
 
+        /// <summary>
+        /// Clear the pool
+        /// </summary>
         public void Clear() {
             this.pool.Clear();
         }

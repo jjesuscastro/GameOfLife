@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Services.Interfaces {
     public interface IObjectPoolService<T> where T : class {
         T Get(int x, int y);

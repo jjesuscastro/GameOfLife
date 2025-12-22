@@ -1,20 +1,24 @@
-using Models;
 using Models.Interfaces;
 using ScriptableObjects;
 using Services.Interfaces;
-using UnityEngine;
 
 namespace Services {
     public class PopulationService : IPopulationService {
+        private Variables variables;
         private int[] neighborsGrid;
         private int population;
 
         public PopulationService(Variables variables) {
-            this.neighborsGrid = new int[variables.width * variables.height];
+            this.variables = variables;
+            this.neighborsGrid = new int[this.variables.width * this.variables.height];
         }
         
+        /// <summary>
+        /// Get the next generation of the grid
+        /// </summary>
+        /// <param name="grid"></param>
         public void NextGeneration(IGrid grid) {
-            int requiredSize = grid.Width * grid.Height;
+            int requiredSize = this.variables.width * this.variables.height;
             if (this.neighborsGrid == null || this.neighborsGrid.Length != requiredSize) {
                 this.neighborsGrid = new int[requiredSize];
             }
@@ -29,8 +33,8 @@ namespace Services {
         /// <param name="grid"></param>
         private void CountNeighbors(IGrid grid) {
             int[] cells = grid.Cells;
-            int width = grid.Width;
-            int height = grid.Height;
+            int width = this.variables.width;
+            int height = this.variables.height;
 
             for (int y = 0; y < height; y++) {
                 int yIndex = y * width;

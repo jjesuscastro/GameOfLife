@@ -1,5 +1,4 @@
 using Models.Interfaces;
-using UnityEngine;
 
 namespace Models {
     public class Grid : IGrid {
@@ -7,14 +6,10 @@ namespace Models {
         public int[] Cells => this.cells;
 
         private int width;
-        public int Width => this.width;
-        private int height;
-        public int Height => this.height;
         
         public Grid(int width, int height) {
             this.cells = new int[width * height];
             this.width = width;
-            this.height = height;
         }
 
         public int GetCell(int x, int y) {
