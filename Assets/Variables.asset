@@ -16,3 +16,9 @@ MonoBehaviour:
   width: 64
   height: 36
   speed: 15
+  mainColor: {r: 1, g: 1, b: 1, a: 1}
+  subColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+  showMainGrid: 1
+  showSubGrid: 1
+  smallStep: 1
+  largeStep: 5

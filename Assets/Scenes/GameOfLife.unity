@@ -752,7 +752,8 @@ MonoBehaviour:
   parentReference:
     TypeName: 
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 519420028}
   variables: {fileID: 11400000, guid: 051a9cf26c09fc543971d0fc4f16690a, type: 2}
   cellsParent: {fileID: 554011105}
   cellPrefab: {fileID: 6388744448477352856, guid: bbb671ccdf3db9d448df2e9ed44df4d8, type: 3}
@@ -1470,13 +1471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4acbe8a5fc72c4cb1d1a49de5ce828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
-  mainColor: {r: 1, g: 1, b: 1, a: 1}
-  showMain: 1
-  showSub: 1
-  smallStep: 1
-  largeStep: 5
-  variables: {fileID: 11400000, guid: 051a9cf26c09fc543971d0fc4f16690a, type: 2}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
