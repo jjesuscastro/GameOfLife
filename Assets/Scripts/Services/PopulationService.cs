@@ -8,12 +8,10 @@ using Unity.Jobs;
 namespace Services {
     public class PopulationService : IPopulationService {
         private Variables variables;
-        private int[] neighborsGrid;
         private int population;
 
         public PopulationService(Variables variables) {
             this.variables = variables;
-            this.neighborsGrid = new int[this.variables.width * this.variables.height];
         }
         
         /// <summary>

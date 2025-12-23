@@ -9,6 +9,8 @@ namespace ScriptableObjects
         [Header("Required")]
         public CellView cellPrefab;
 
+        public Material cellMaterial;
+
         [Header("Simulation Settings")]
         public int width;
         public int height;
