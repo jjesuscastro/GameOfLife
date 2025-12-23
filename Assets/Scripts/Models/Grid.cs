@@ -13,10 +13,6 @@ namespace Models {
             this.width = width;
         }
 
-        public int GetCell(int x, int y) {
-            return this.cells[y * this.width + x];
-        }
-
         public void SetCell(int x, int y, int value) {
             this.cells[y * this.width + x] = value;
         }

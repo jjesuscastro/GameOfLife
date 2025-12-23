@@ -1,5 +1,4 @@
 using UnityEngine;
-using Views;
 
 namespace ScriptableObjects
 {
@@ -7,8 +6,6 @@ namespace ScriptableObjects
     public class Variables : ScriptableObject
     {
         [Header("Required")]
-        public CellView cellPrefab;
-
         public Material cellMaterial;
 
         [Header("Simulation Settings")]

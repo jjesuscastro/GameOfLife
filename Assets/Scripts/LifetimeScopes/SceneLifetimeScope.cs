@@ -6,7 +6,6 @@ using Services.Interfaces;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using Views;
 
 namespace LifetimeScopes {
     public class SceneLifetimeScope : LifetimeScope {
