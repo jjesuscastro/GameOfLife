@@ -23,6 +23,7 @@ namespace LifetimeScopes {
 
             builder.Register<IGridSimulationService, GridSimulationService>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<IPopulationService, PopulationService>(Lifetime.Scoped);
+            builder.Register<IMeshService, MeshService>(Lifetime.Scoped);
             
             builder.RegisterComponentInHierarchy<InputService>().As<IInputService>();
 
